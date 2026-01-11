@@ -34,7 +34,7 @@ export default function SnowHero() {
           <h1 className="text-white text-4xl iceberg-regular text-center">
             Explore the ice around the world
           </h1>
-          <Link href="/products">
+          <Link href="/products/snow-vis">
              <Button className="text-lg bg-primary text-white p-4">
             Get Visualisation
           </Button>

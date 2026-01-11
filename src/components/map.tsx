@@ -3,12 +3,20 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function MapComponent() {
+
+interface MapProps {
+
+  overlaytileurl : string
+}
+
+export default function MapComponent ( mapProp : MapProps) {
   return (
     <div className="w-full h-screen max-h-screen px-4">
       <MapContainer
         center={[51.505, -0.09]}
         zoom={3}
+        minZoom={2}
+        maxZoom={5}
         scrollWheelZoom={true}
         className="w-full h-full"
       >
@@ -20,7 +28,7 @@ export default function MapComponent() {
 
         {/* Earth Engine overlay */}
         <TileLayer
-          url="https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/ccd836d141291ed4fc276bf407950aad-0054f7ed353ae2c8b13f18a0330ebc35/tiles/{z}/{x}/{y}"
+          url={mapProp.overlaytileurl}
           attribution="Earth Engine"
         />
       </MapContainer>
