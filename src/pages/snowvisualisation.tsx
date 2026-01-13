@@ -1,5 +1,5 @@
 import DefaultLayout from "@/layouts/default";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, MouseEventHandler, useState } from "react";
 import { Button } from "@heroui/button";
 import { getGlobalSnowCover } from "@/api/snow";
 import MapComponent from "@/components/map";
@@ -18,6 +18,8 @@ export default function SnowPage() {
   const [formData, setFormData] = useState({
     dataset: "",
     region: "",
+    quality: "",
+    masks: ""
   });
 
 
@@ -28,12 +30,17 @@ export default function SnowPage() {
 
   const datasets = ["Modis Snow Cover"];
   const regions = ["Global", "Himalayas", "Alps", "Greenland", "Antarctic"];
+  const quality_pixels = ["best" , "good" , "ok" , "not important"]
+  const masks = ["default" , "night" , "ocean", "inland water", "cloud",  "saturated" , "all of the above"]
 
   const handleDatasetChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setFormData({
       ...formData,
       dataset: e.target.value,
-      region: "", // reset region when dataset changes
+      region: "", 
+      quality : "",
+      masks: ""
+
     });
   };
 
@@ -45,6 +52,28 @@ export default function SnowPage() {
     });
   };
 
+    const handleMaskChange = (e: ChangeEvent<HTMLSelectElement>) => {
+
+    setFormData({
+      ...formData,
+      masks: e.target.value,
+    });
+
+    console.log(e.target.value)
+  };
+
+
+
+const handleQuality = (e : ChangeEvent<HTMLInputElement>) => {
+
+setFormData({
+      ...formData,
+      quality: e.target.value,
+    });
+
+    console.log(e.target.value)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -53,7 +82,7 @@ export default function SnowPage() {
     try {
       const responsedata = await getGlobalSnowCover(
         formData.region,
-        formData.dataset
+        formData.dataset,
       );
       setVisualization(responsedata);
     } catch (ex) {
@@ -71,16 +100,16 @@ export default function SnowPage() {
           onSubmit={handleSubmit}
         >
           {/* Dataset */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 " id="dataset-container">
             <label className="text-sm">Select Dataset</label>
-            <select
+            <select id="dataset-select"
               value={formData.dataset}
               onChange={handleDatasetChange}
               className="bg-black border border-gray-500 rounded px-3 py-2"
             >
               <option value="">-- Select dataset --</option>
               {datasets.map((dataset) => (
-                <option key={dataset} value={dataset}>
+                <option id={`dataset-option-${dataset}`} key={dataset} value={dataset}>
                   {dataset}
                 </option>
               ))}
@@ -89,17 +118,66 @@ export default function SnowPage() {
 
           {/* Region */}
           {formData.dataset && (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2" id="region-container">
               <label className="text-sm">Select Region</label>
               <select
+              id="region-select"
                 value={formData.region}
                 onChange={handleRegionChange}
                 className="bg-black border border-gray-500 rounded px-3 py-2"
               >
                 <option value="">-- Select region --</option>
                 {regions.map((region) => (
-                  <option key={region} value={region}>
+                  <option id={`dataset-option-${region}`} key={region} value={region}>
                     {region}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+             {formData.region && (
+
+              <div className="flex flex-col gap-2" id="quality-container">
+                <label>Set Pixel Quality</label>
+            <div className="flex flex-row md:flex-col gap-2">
+              {
+                quality_pixels.map(quality => (
+                         <div className="text-sm flex flex-row gap-2 justify-start">
+                   <input
+                type="radio"
+                name="quality"
+                value={quality}
+                id={`quality-option-${quality}`}
+                checked={formData.quality == quality}
+                onChange={handleQuality}
+                className="bg-black border border-gray-500 rounded px-3 py-2"
+              >
+              </input>
+              <p className="capitalize">{quality}</p>
+              </div>
+              
+
+                ))
+              }
+             
+            </div>
+            </div>
+          )}
+
+               {/* Region */}
+          {formData.quality && (
+            <div className="flex flex-col gap-2" id="masks-container">
+              <label className="text-sm">Select Masks</label>
+              <select
+              id="region-select"
+                value={formData.masks}
+                onChange={handleMaskChange}
+                className="bg-black border border-gray-500 rounded px-3 py-2"
+              >
+                <option value="">-- Select Masks --</option>
+                {masks.map((mask) => (
+                  <option className="capitalize" id={`dataset-option-${mask}`} key={mask} value={mask}>
+                    {mask}
                   </option>
                 ))}
               </select>
@@ -108,7 +186,7 @@ export default function SnowPage() {
 
           {/* Submit */}
           {formData.region && (
-            <Button type="submit" color="primary">
+            <Button id="submit-form" type="submit" color="primary">
               Submit
             </Button>
           )}
