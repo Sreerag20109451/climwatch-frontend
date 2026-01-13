@@ -2,14 +2,14 @@ import DefaultLayout from "@/layouts/default";
 import { ChangeEvent, MouseEventHandler, useState } from "react";
 import { Button } from "@heroui/button";
 import { getGlobalSnowCover } from "@/api/snow";
-import MapComponent from "@/components/map";
+import MapComponent, { Legend } from "@/components/map";
 
 
   export interface Visualization {
 
     url : string,
     vis_params :object,
-    legend : object
+    legend : Legend
 
 
   }
@@ -30,8 +30,21 @@ export default function SnowPage() {
 
   const datasets = ["Modis Snow Cover"];
   const regions = ["Global", "Himalayas", "Alps", "Greenland", "Antarctic"];
-  const quality_pixels = ["best" , "good" , "ok" , "not important"]
-  const masks = ["default" , "night" , "ocean", "inland water", "cloud",  "saturated" , "all of the above"]
+  const quality_pixels = ["default", "best" , "good" , "ok" ]
+  const masks = ["default" , "night" , "ocean", "inland water", "cloud",  "saturated" , "all"]
+
+
+  const resetAll = () =>{
+
+    setFormData ({
+      ...formData,
+      dataset : '',
+      region :'',
+      quality : '',
+      masks: ''
+    })
+
+  }
 
   const handleDatasetChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setFormData({
@@ -77,14 +90,17 @@ setFormData({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log("submitted");
 
     try {
       const responsedata = await getGlobalSnowCover(
         formData.region,
         formData.dataset,
+        formData.quality,
+        formData.masks
       );
       setVisualization(responsedata);
+
+      // resetAll()
     } catch (ex) {
       // Alert goes here
 
@@ -94,7 +110,7 @@ setFormData({
 
   return (
     <DefaultLayout>
-      <section className="flex items-start justify-center min-h-screen p-4">
+      <section className="flex flex-col lg:flex-row items-center justify-center lg:justify-start min-h-screen gap-4 p-4">
         <form
           className="flex flex-col gap-6 w-full max-w-md text-white"
           onSubmit={handleSubmit}
@@ -193,7 +209,7 @@ setFormData({
         </form>
 
         {visualisation != null &&  
-        <MapComponent overlaytileurl={visualisation.url}/>
+        <MapComponent legend={visualisation.legend} overlaytileurl={visualisation.url}/>
         }
       </section>
     </DefaultLayout>

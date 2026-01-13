@@ -1,38 +1,54 @@
 import axios from "axios"
 
 
-const snowendpoint = "http://127.0.0.1:8000/apiv0/snow/global_snow_cover"
+const snowendpoint = "http://127.0.0.1:8000/apiv0/snow/global_snow_cover";
 
-export const getGlobalSnowCover = async (region : string, dataset : string) =>{
+export const getGlobalSnowCover = async (
+  region: string,
+  dataset: string,
+  quality: string,
+  masks: string
+) => {
+  try {
+    let url = new URL(snowendpoint);
+    if (dataset.toLowerCase() === "modis snow cover") {
+      if (region.toLowerCase() !== "global") {
+        console.log(region.toLowerCase())
+        url.searchParams.append("region", region.toLowerCase());
+      }
 
-    console.log('global scover caled')
+      // Add quality/qa mask if provided
+      if (quality) {
+        url.searchParams.append("qa_mask", quality.toLowerCase());
+      }
 
-    let response = null
+      // Add snow class mask if provided
+      if (masks) {
+  let normalizedMask = masks.toLowerCase();
 
-    if(region == 'Global' && dataset == 'Modis Snow Cover'){
+  if (normalizedMask.includes("inland")) {
+    normalizedMask = "inlandw";
+  } else if (normalizedMask.includes("no")) {
+    normalizedMask = "nod";
+  }
 
-        response = await axios.get(snowendpoint)
-        if(response.data){
-            console.log(response.data)
-            return response.data
-        }
-        else console.log('Error happend')
-    }
-  
-
-    else if(region != 'Global') {
-        region = region.toLowerCase()
-        console.log(region)
-        response = await axios.get(`${snowendpoint}?region=${region}`)
-        if(response.data){
-            console.log(response.data)
-            return response.data
-        }
-        else console.log('Error happend')
-        
-    }
-
-
-    
-
+  url.searchParams.append("snow_class_mask", normalizedMask);
 }
+
+      // Make the GET request
+      const response = await axios.get(url.toString());
+      if (response.data) {
+        console.log("Snow data:", response.data);
+        return response.data;
+      } else {
+        console.error("No data returned from the server");
+      }
+    } else {
+      console.error("Dataset not supported:", dataset);
+    }
+  } catch (err) {
+    console.error("Error fetching snow data:", err);
+  }
+
+  return null;
+};

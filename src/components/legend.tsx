@@ -1,17 +1,17 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export interface LegendItem {
+interface LegendItem {
   color: string;
   label: string;
 }
 
-export interface Legend {
+interface Legend {
   legend: Record<string, string>;
   chartname: string;
 }
 
-export interface MapProps {
+interface MapProps {
   overlaytileurl: string;
   legend: Legend;
 }
