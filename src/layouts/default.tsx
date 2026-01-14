@@ -13,6 +13,7 @@ export default function DefaultLayout({
       <main className="container mx-auto  flex-grow">
         {children}
       </main>
+      <Footer/>
     </div>
   );
 }

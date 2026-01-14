@@ -1,4 +1,4 @@
-import { ProductCardProps } from "@/components/productcards";
+
 import snow from "../media/snow.jpg"
 import ocean from "../media/ocean.jpg"
 import land from "../media/land.jpg"
@@ -11,18 +11,6 @@ export const siteConfig = {
   name: "Vite + HeroUI",
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
-    {
-      label: "PRODUCTS",
-      href: "/products",
-    },
-    {
-      label: "SNOW",
-      href: "/snow",
-    },
-     {
-      label: "ABOUT ME",
-      href: "/about",
-    },
   ],
   navMenuItems: [
    {
@@ -32,10 +20,6 @@ export const siteConfig = {
       {
       label: "PRODUCTS",
       href: "/products",
-    },
-    {
-      label: "SNOW",
-      href: "/snow",
     },
 
   ],
@@ -50,7 +34,7 @@ export const siteConfig = {
 };
 
 
-export const productCards: ProductCardProps[] = [
+export const productCards = [
   {
     productname: "Snow Data",
     description: "Access various snow datasets: global snow cover, snow melt, snow depth, seasonal snow trends.",
