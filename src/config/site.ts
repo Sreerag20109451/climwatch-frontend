@@ -1,9 +1,4 @@
 
-import snow from "../media/snow.jpg"
-import ocean from "../media/ocean.jpg"
-import land from "../media/land.jpg"
-import temp from "../media/temp.jpg"
-import ghats from "../media/ghats.jpg"
 
 export type SiteConfig = typeof siteConfig;
 
@@ -34,7 +29,7 @@ export const siteConfig = {
 };
 
 
-export const productCards = [
+export const productCards: ProductCardProps[] = [
   {
     productname: "Snow Data",
     description: "Access various snow datasets: global snow cover, snow melt, snow depth, seasonal snow trends.",
@@ -66,7 +61,7 @@ export const productCards = [
   //   image : ghats
   // },
  
-];
+
 
 
 

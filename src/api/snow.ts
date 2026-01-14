@@ -2,7 +2,8 @@
 import axios from "axios"
 
 
-const snowendpoint = "https://geowatch-server-production.up.railway.app/apiv0/snow/global_snow_cover"
+const snowendpoint = "http://127.0.0.1:8000/apiv0/snow/global_snow_cover";
+
 export const getGlobalSnowCover = async (
   region: string,
   dataset: string,
@@ -17,12 +18,9 @@ export const getGlobalSnowCover = async (
         url.searchParams.append("region", region.toLowerCase());
       }
 
-      // Add quality/qa mask if provided
       if (quality) {
         url.searchParams.append("qa_mask", quality.toLowerCase());
       }
-
-      // Add snow class mask if provided
       if (masks) {
   let normalizedMask = masks.toLowerCase();
 
