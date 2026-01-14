@@ -1,8 +1,8 @@
 import axios from "axios"
 
 
-const snowendpoint = "http://127.0.0.1:8000/apiv0/snow/global_snow_cover";
 
+const snowendpoint = import.meta.env.VITE_API_URL ||  import.meta.env.VITE_API_URL_CODESPACES;
 export const getGlobalSnowCover = async (
   region: string,
   dataset: string,
@@ -10,19 +10,16 @@ export const getGlobalSnowCover = async (
   masks: string
 ) => {
   try {
-    let url = new URL(snowendpoint);
+    let url = new URL(snowendpoint as string);
     if (dataset.toLowerCase() === "modis snow cover") {
       if (region.toLowerCase() !== "global") {
         console.log(region.toLowerCase())
         url.searchParams.append("region", region.toLowerCase());
       }
 
-      // Add quality/qa mask if provided
       if (quality) {
         url.searchParams.append("qa_mask", quality.toLowerCase());
       }
-
-      // Add snow class mask if provided
       if (masks) {
   let normalizedMask = masks.toLowerCase();
 
