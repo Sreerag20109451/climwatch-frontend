@@ -4,7 +4,6 @@ import { useState } from "react";
 import DefaultLayout from "@/layouts/default";
 import SnowHero from "@/components/snowhero";
 import LandHero from "@/components/landhero";
-import ProductHero from "@/components/product-hero";
 
 const slides = [
   <SnowHero key="snow" />,

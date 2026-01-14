@@ -1,9 +1,4 @@
-import { ProductCardProps } from "@/components/productcards";
-import snow from "../media/snow.jpg"
-import ocean from "../media/ocean.jpg"
-import land from "../media/land.jpg"
-import temp from "../media/temp.jpg"
-import ghats from "../media/ghats.jpg"
+
 
 export type SiteConfig = typeof siteConfig;
 
@@ -50,13 +45,7 @@ export const siteConfig = {
 };
 
 
-export const productCards: ProductCardProps[] = [
-  {
-    productname: "Snow Data",
-    description: "Access various snow datasets: global snow cover, snow melt, snow depth, seasonal snow trends.",
-    href: "/snow",
-    image: snow
-  },
+
   // {
   //   productname: "Land Cover",
   //   description: "Explore land cover types and vegetation across the globe.",
@@ -82,7 +71,7 @@ export const productCards: ProductCardProps[] = [
   //   image : ghats
   // },
  
-];
+
 
 
 
