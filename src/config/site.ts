@@ -29,13 +29,7 @@ export const siteConfig = {
 };
 
 
-export const productCards: ProductCardProps[] = [
-  {
-    productname: "Snow Data",
-    description: "Access various snow datasets: global snow cover, snow melt, snow depth, seasonal snow trends.",
-    href: "/snow",
-    image: snow
-  },
+
   // {
   //   productname: "Land Cover",
   //   description: "Explore land cover types and vegetation across the globe.",
@@ -61,7 +55,6 @@ export const productCards: ProductCardProps[] = [
   //   image : ghats
   // },
  
-
 
 
 
