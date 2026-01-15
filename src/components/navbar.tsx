@@ -10,7 +10,6 @@ import {
 } from "@heroui/navbar"; 
 
 import { siteConfig } from "@/config/site"; 
-import { GithubIcon } from "@/components/icons"; 
 import Logo from "../logo/pnglogo.png"; 
 
 export const Navbar = () => {
