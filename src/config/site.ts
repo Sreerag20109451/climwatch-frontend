@@ -42,7 +42,7 @@ export const ProductItems : ProductHeroSlideProps[] = [{
   },
   {
     name: "Snow",
-    description: "Explore the snow and ice cover across globe",
+    description: "Explore the snow and ice across globe",
     href: "/products/snow-vis",
     image :snow
   }
