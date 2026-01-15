@@ -1,4 +1,8 @@
 
+import { ProductHeroSlideProps } from "@/components/productSlide";
+import land from "../media/land.jpg"
+import snow from "../media/snow.jpg"
+
 
 export type SiteConfig = typeof siteConfig;
 
@@ -6,54 +10,47 @@ export const siteConfig = {
   name: "Vite + HeroUI",
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
+    {
+      label: "About Me",
+      href: "/about",
+    },
+   
   ],
   navMenuItems: [
    {
-      label: "HOME",
+      label: "Home",
       href: "/",
     },
-      {
-      label: "PRODUCTS",
-      href: "/products",
+     {
+      label: "About Me",
+      href: "/about",
     },
 
   ],
   links: {
-    github: "https://github.com/Sreerag20109451/geowatch-server",
-    Linkedin : "https://www.linkedin.com/in/sreerag-sathian-212305189/overlay/background-image/"
 
   },
-  products : [
-    {name: 'snow' , description : ''}
-  ]
 };
 
 
 
-  // {
-  //   productname: "Land Cover",
-  //   description: "Explore land cover types and vegetation across the globe.",
-  //   href: "/land",
-  //   image: land
-  // },
-  // {
-  //   productname: "Ocean Data",
-  //   description: "Visualize sea surface temperature, chlorophyll, and ocean currents.",
-  //   href: "/ocean",
-  //   image: ocean
-  // },
-  // {
-  //   productname: "Temperature Trends",
-  //   description: "Monitor global and regional temperature changes over time.",
-  //   href: "/temperature",
-  //   image :temp
-  // },
-  // {
-  //   productname: "Regions",
-  //   description: "Detailed environmental, biodiversity and climate visualizations for different regions of the world.",
-  //   href: "/regions/himalayas",
-  //   image : ghats
-  // },
+export const ProductItems : ProductHeroSlideProps[] = [{
+    name: "Land Cover",
+    description: "Global landscape is changing",
+    href: "/products/land-vis",
+    image: land
+  },
+  {
+    name: "Snow",
+    description: "Explore the snow and ice cover across globe",
+    href: "/products/snow-vis",
+    image :snow
+  }
+  ]
+
+
+
+  
  
 
 
