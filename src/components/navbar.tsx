@@ -39,9 +39,6 @@ export const Navbar = () => {
       {/* Github & Toggle for md and below */}
       <NavbarContent className="flex items-center gap-4" justify="end">
         <NavbarItem>
-          <Link isExternal href={siteConfig.links.github} title="GitHub">
-            <GithubIcon className="text-default-500" />
-          </Link>
         </NavbarItem>
 
         {/* Show toggle only on md and below */}
