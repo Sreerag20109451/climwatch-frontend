@@ -27,28 +27,29 @@ export default function Hero() {
           playsInline
           controls={false}
         ></video>
-        <div className="absolute inset-0 bg-black/30 z-0"></div>
+        
+        {/* Dark overlay for contrast */}
+        <div className="absolute inset-0 bg-black/40 z-0"></div>
 
-        <div className="relative z-10 flex flex-col gap-y-6 items-center justify-center h-full w-full px-4">
-          <div className="flex flex-col items-center gap-y-4">
-            <img 
+        <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4">
+          
+          {/* Logo */}
+          <div className="">
+             <img 
               src="/pnglogo.png" 
               alt="Climwatch Logo" 
-              className="w-24 h-24 md:w-32 md:h-32 object-contain animate-pulse"
+              className="w-28 h-28 md:w-40 md:h-40 object-contain drop-shadow-2xl"
             />
-            <h1 className="text-white text-6xl md:text-8xl font-black tracking-tighter iceberg-regular drop-shadow-2xl">
-              Climwatch
-            </h1>
           </div>
 
-          {/* Description */}
-          <div className="flex flex-col items-center gap-y-4 max-w-2xl text-center">
-            <h2 className="text-zinc-200 text-xl md:text-3xl font-light tracking-wide italic">
+          {/* Tagline and Button Container */}
+          <div className="flex flex-col items-center gap-y-8 max-w-2xl">
+            <h2 className="text-zinc-200 text-xl md:text-2xl font-light tracking-widest uppercase italic opacity-90">
               Monitoring Earth, Interpreting Change
             </h2>
             
             <Link href="/products">
-              <Button className="text-lg bg-primary text-white px-8 py-6 rounded-full shadow-xl hover:scale-105 transition-transform">
+              <Button className="text-lg bg-primary text-white px-10 py-7 rounded-full shadow-2xl hover:scale-105 transition-all font-bold">
                 Get started
               </Button>
             </Link>
