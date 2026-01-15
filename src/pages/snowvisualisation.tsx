@@ -25,7 +25,7 @@ export default function SnowPage() {
     {
       id: "modis",
       label: "MODIS (NDSI)",
-      fetchData: (p: any) => getGlobalSnowCover(p.region, p.dataset, p.quality, p.masks),
+      fetchData: (p: any) => getGlobalSnowCover(p.region, p.quality, p.masks),
       FormComponent: ModisForm
     },
 
