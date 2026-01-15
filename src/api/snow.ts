@@ -2,50 +2,43 @@
 import axios from "axios"
 
 
-const snowendpoint = "http://127.0.0.1:8000/apiv0/snow/global_snow_cover";
+const snowendpoint = import.meta.env.VITE_API_URL ||  import.meta.env.VITE_API_URL_CODESPACES;
 
 export const getGlobalSnowCover = async (
   region: string,
-  dataset: string,
   quality: string,
   masks: string
 ) => {
   try {
-    let url = new URL(snowendpoint as string);
-    if (dataset.toLowerCase() === "modis snow cover") {
-      if (region.toLowerCase() !== "global") {
-        console.log(region.toLowerCase())
-        url.searchParams.append("region", region.toLowerCase());
+    const url = new URL(snowendpoint as string);
+
+    url.searchParams.append("region", region.toLowerCase());
+
+    if (quality) {
+      url.searchParams.append("qa_mask", quality.toLowerCase());
+    }
+
+    if (masks) {
+      let normalizedMask = masks.toLowerCase();
+      if (normalizedMask.includes("inland")) {
+        normalizedMask = "inlandw";
+      } else if (normalizedMask.includes("no")) {
+        normalizedMask = "nod";
       }
 
-      if (quality) {
-        url.searchParams.append("qa_mask", quality.toLowerCase());
-      }
-      if (masks) {
-  let normalizedMask = masks.toLowerCase();
+      url.searchParams.append("snow_class_mask", normalizedMask);
+    }
 
-  if (normalizedMask.includes("inland")) {
-    normalizedMask = "inlandw";
-  } else if (normalizedMask.includes("no")) {
-    normalizedMask = "nod";
-  }
-
-  url.searchParams.append("snow_class_mask", normalizedMask);
-}
-
-      // Make the GET request
-      const response = await axios.get(url.toString());
-      if (response.data) {
-        console.log("Snow data:", response.data);
-        return response.data;
-      } else {
-        console.error("No data returned from the server");
-      }
+    // Execute the request using axios
+    const response = await axios.get(url.toString());
+    
+    if (response.data) {
+      return response.data;
     } else {
-      console.error("Dataset not supported:", dataset);
+      console.error("No data returned from the server");
     }
   } catch (err) {
-    console.error("Error fetching snow data:", err);
+    console.error("Error fetching geospatial data:", err);
   }
 
   return null;

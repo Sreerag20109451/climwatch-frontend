@@ -2,16 +2,15 @@
 
 import { useState } from "react";
 import DefaultLayout from "@/layouts/default";
-import SnowHero from "@/components/snowhero";
-import LandHero from "@/components/landhero";
+import { ProductItems } from "@/config/site";
+import ProductHeroSlide from "@/components/productSlide";
 
-const slides = [
-  <SnowHero key="snow" />,
-  <LandHero key="land" />,
-];
+
 
 export default function ProductsPage() {
   const [current, setCurrent] = useState(0);
+
+  const slides = ProductItems
 
   const next = () => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -32,7 +31,7 @@ export default function ProductsPage() {
         >
           {slides.map((slide, index) => (
             <div key={index} className="w-full h-full flex-shrink-0">
-              {slide}
+              <ProductHeroSlide {...slide}/>
             </div>
           ))}
         </div>

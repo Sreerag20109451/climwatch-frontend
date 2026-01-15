@@ -8,12 +8,11 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col min-h-screen bg-black">
+    <div className="relative flex flex-col gap-4 min-h-screen bg-black">
       <Navbar />
       <main className="container mx-auto  flex-grow">
         {children}
       </main>
-      <Footer/>
     </div>
   );
 }
