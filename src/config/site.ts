@@ -1,5 +1,5 @@
 
-import { ProductHeroSlideProps } from "@/components/productSlide";
+import { ProductHeroSlideProps } from "@/components/slide";
 import land from "../media/land.jpg"
 import snow from "../media/snow.jpg"
 

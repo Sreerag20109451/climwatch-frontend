@@ -3,7 +3,7 @@
 import { useState } from "react";
 import DefaultLayout from "@/layouts/default";
 import { ProductItems } from "@/config/site";
-import ProductHeroSlide from "@/components/productSlide";
+import ProductHeroSlide from "@/components/slide";
 
 
 

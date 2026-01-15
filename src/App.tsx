@@ -1,8 +1,6 @@
 import { Route, Routes, Outlet } from "react-router-dom";
 
 import IndexPage from "@/pages/index";
-import DocsPage from "@/pages/roadmap";
-import PricingPage from "@/pages/about";
 import ProductsPage from "./pages/products";
 import SnowPage from "@/pages/snowvisualisation";
 import AboutMePage from "@/pages/about";
