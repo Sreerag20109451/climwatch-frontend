@@ -43,3 +43,26 @@ export const getGlobalSnowCover = async (
 
   return null;
 };
+
+export const getRegionalSentinelNDSI = async (region: string, mask: string, ) =>{
+
+  try {
+    const url = new URL(snowendpoint as string);
+    url.searchParams.append("region", region.toLowerCase());
+    if (mask == 'true') {
+      url.searchParams.append("sentnel_cloud_mask", "true");
+    }
+    const response = await axios.get(url.toString());
+    
+    if (response.data) {
+      return response.data;
+    } else {
+      console.error("No data returned from the server");
+    }
+  } catch (err) {
+    console.error("Error fetching geospatial data:", err);
+  }
+
+  return null;
+
+}
