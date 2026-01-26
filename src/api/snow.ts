@@ -12,6 +12,8 @@ export const getGlobalSnowCover = async (
   try {
     const url = new URL(snowendpoint as string);
 
+     url.searchParams.append("dataset", "modis");
+
     url.searchParams.append("region", region.toLowerCase());
 
     if (quality) {
@@ -48,6 +50,8 @@ export const getRegionalSentinelNDSI = async (region: string, mask: string, ) =>
 
   try {
     const url = new URL(snowendpoint as string);
+     url.searchParams.append("dataset", "sentinel");
+
     url.searchParams.append("region", region.toLowerCase());
     if (mask == 'true') {
       url.searchParams.append("sentnel_cloud_mask", "true");

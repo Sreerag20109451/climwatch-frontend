@@ -40,6 +40,7 @@ export function MultiVisualisationShell({ datasets }: MultiVisualisationShellPro
           <MapComponent 
             legend={visualization.legend!!} 
             overlaytileurl={visualization.url} 
+            resolution={visualization.resolution}
           />
         </div>
       )}
