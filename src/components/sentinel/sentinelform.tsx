@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "@heroui/button";
-import { LuTriangle } from "react-icons/lu";
 
 const REGIONS = ["Himalayas", "Alps", "Greenland", "Antarctic"];
 const MASKS = ["no masks" , "mask clouds"];
