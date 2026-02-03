@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { Resolution } from "@/pages/snowvisualisation";
 
 export interface LegendItem {
   color: string;
@@ -14,13 +15,26 @@ export interface Legend {
 export interface MapProps {
   overlaytileurl: string;
   legend: Legend;
+  resolution : Resolution
 }
 
 const convertLegendToItems = (legend: Legend): LegendItem[] =>
   Object.entries(legend.legend).map(([color, label]) => ({ color, label }));
 
-export default function MapComponent({ overlaytileurl, legend }: MapProps) {
+export default function MapComponent({ overlaytileurl, legend, resolution }: MapProps) {
   const legendItems = convertLegendToItems(legend);
+
+  let maxZom = 0
+  switch (resolution){
+    case "high":
+      maxZom = 9
+      break
+    case "mid":
+      maxZom = 5
+      break
+    case "low":
+      maxZom = 3
+  }
 
   return (
     <div className="w-full h-full relative">
@@ -28,7 +42,7 @@ export default function MapComponent({ overlaytileurl, legend }: MapProps) {
         center={[51.505, -0.09]}
         zoom={3}
         minZoom={2}
-        maxZoom={5}
+        maxZoom={maxZom}
         scrollWheelZoom={true}
         className="w-full h-full z-0"
       >

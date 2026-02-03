@@ -1,12 +1,14 @@
 import DefaultLayout from "@/layouts/default";
 import { ModisForm } from "@/components/modis/modisform";
-import { getGlobalSnowCover } from "@/api/snow";
+import { getGlobalSnowCover, getRegionalSentinelNDSI } from "@/api/snow";
 import { MultiVisualisationShell } from "@/components/visualizationshell";
 import { Legend } from "@/components/map";
+import { SentinelForm } from "@/components/sentinel/sentinelform";
 
 
 
 
+export type Resolution  = "high" | "mid" | "low"
 
 export interface VisualizationData {
   url: string;
@@ -18,6 +20,7 @@ export interface VisualizationData {
     [key: string]: any; 
   };
   legend: Legend;
+  resolution : Resolution
 }
 
 export default function SnowPage() {
@@ -28,6 +31,13 @@ export default function SnowPage() {
       fetchData: (p: any) => getGlobalSnowCover(p.region, p.quality, p.masks),
       FormComponent: ModisForm
     },
+      {
+      id: "sentinel",
+      label: "SENTINEL (REGIONAL NDSI)",
+      fetchData: (p: any) => getRegionalSentinelNDSI(p.region, p.mask),
+      FormComponent: SentinelForm
+    },
+    
 
   ];
 
