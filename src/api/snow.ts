@@ -2,16 +2,17 @@
 import axios from "axios"
 
 
-const snowendpoint = import.meta.env.VITE_API_URL ||  import.meta.env.VITE_API_URL_CODESPACES;
+const snowendpoint = import.meta.env.VITE_API_URL 
 
 export const getGlobalSnowCover = async (
   region: string,
   quality: string,
-  masks: string
+  masks: string,
+  threshold : string
 ) => {
   try {
     const url = new URL(snowendpoint as string);
-
+    console.log(threshold)
      url.searchParams.append("dataset", "modis");
 
     url.searchParams.append("region", region.toLowerCase());
@@ -31,6 +32,10 @@ export const getGlobalSnowCover = async (
       url.searchParams.append("snow_class_mask", normalizedMask);
     }
 
+    if (threshold == 'apply thresholds') {
+      url.searchParams.append("threshold", "40");
+    }
+
     // Execute the request using axios
     const response = await axios.get(url.toString());
     
@@ -46,9 +51,10 @@ export const getGlobalSnowCover = async (
   return null;
 };
 
-export const getRegionalSentinelNDSI = async (region: string, mask: string, ) =>{
+export const getRegionalSentinelNDSI = async (region: string, mask: string,threshold : string ) =>{
 
   try {
+    console.log(threshold)
     const url = new URL(snowendpoint as string);
      url.searchParams.append("dataset", "sentinel");
 
@@ -56,6 +62,10 @@ export const getRegionalSentinelNDSI = async (region: string, mask: string, ) =>
     if (mask == 'true') {
       url.searchParams.append("sentnel_cloud_mask", "true");
     }
+    if (threshold == 'apply thresholds') {
+      url.searchParams.append("threshold", "0.4");
+    }
+  
     const response = await axios.get(url.toString());
     
     if (response.data) {
