@@ -28,13 +28,13 @@ export default function SnowPage() {
     {
       id: "modis",
       label: "MODIS (NDSI)",
-      fetchData: (p: any) => getGlobalSnowCover(p.region, p.quality, p.masks),
+      fetchData: (p: any) => getGlobalSnowCover(p.region, p.quality, p.masks,p.threshold),
       FormComponent: ModisForm
     },
       {
       id: "sentinel",
       label: "SENTINEL (REGIONAL NDSI)",
-      fetchData: (p: any) => getRegionalSentinelNDSI(p.region, p.mask),
+      fetchData: (p: any) => getRegionalSentinelNDSI(p.region, p.mask,p.threshold),
       FormComponent: SentinelForm
     },
     

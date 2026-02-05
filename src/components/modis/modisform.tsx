@@ -6,12 +6,14 @@ import { LuTriangle } from "react-icons/lu";
 const REGIONS = ["Global", "Himalayas", "Alps", "Greenland", "Antarctic"];
 const QUALITY_PIXELS = ["default", "best", "good", "ok"];
 const MASKS = ["default", "night", "ocean", "inland water", "cloud", "saturated", "all"];
+const THRESHOLDS = ["no threshold" , "apply thresholds" ]
 
 export function ModisForm({ onSubmit }: { onSubmit: (data: any) => void }) {
   const [formData, setFormData] = useState({
     region: "",
     quality: "",
-    masks: ""
+    masks: "",
+    threshold : ""
   });
 
   const isAggressiveQuality = ["best", "good", "ok"].includes(formData.quality);
@@ -81,8 +83,21 @@ export function ModisForm({ onSubmit }: { onSubmit: (data: any) => void }) {
           )}
         </div>
       )}
+        {formData.quality && (
+        <div className="flex flex-col gap-2 animate-in fade-in">
+          <label className="text-xs font-semibold uppercase text-zinc-500">Set NDSI Threshold</label>
+          <select
+            value={formData.threshold}
+            onChange={(e) => setFormData({ ...formData, threshold: e.target.value })}
+            className="bg-zinc-900 border border-white/10 rounded-xl px-3 py-2.5 text-sm focus:border-emerald-500 outline-none"
+          >
+            <option value="">-- Set NDSI threshold --</option>
+            {THRESHOLDS.map((m) => <option key={m} value={m}>{m}</option>)}
+          </select>
+        </div>
+      )}
 
-      {formData.region && (
+      {formData.threshold && (
         <Button type="submit" className="mt-2 bg-white text-black font-bold rounded-xl h-10 hover:bg-zinc-200">
           Render Map
         </Button>
