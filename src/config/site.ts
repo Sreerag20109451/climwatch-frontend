@@ -14,6 +14,14 @@ export const siteConfig = {
       label: "About Me",
       href: "/about",
     },
+    {
+      label: "Snow Cover",
+      href: "/products/snow-vis",
+    },
+    {
+      label: "Land Cover",
+      href : "/products/land-vis"
+    }
    
   ],
   navMenuItems: [
@@ -25,6 +33,14 @@ export const siteConfig = {
       label: "About Me",
       href: "/about",
     },
+     {
+      label: "Snow Cover",
+      href: "/products/snow-vis",
+    },
+        {
+      label: "Land Cover",
+      href : "/products/land-vis"
+    }
 
   ],
   links: {

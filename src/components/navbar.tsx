@@ -14,7 +14,7 @@ import Logo from "../logo/pnglogo.png";
 
 export const Navbar = () => {
   return (
-    <HeroUINavbar maxWidth="xl" height="4rem" shouldHideOnScroll className="bg-black p-1 opacity-70">
+    <HeroUINavbar maxWidth="xl" height="4rem" shouldHideOnScroll className="bg-black p-1 opacity-70 flex flex-row justify-center">
       {/* Logo / Brand */}
       <NavbarContent className="flex w-full justify-between items-center" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
