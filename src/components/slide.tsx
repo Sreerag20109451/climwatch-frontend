@@ -29,7 +29,7 @@ export default function ProductHeroSlide(props : ProductHeroSlideProps ) {
           className="absolute top-0 left-0 w-full h-full object-cover"
         
         ></img>
-        <div className="relative z-10 flex flex-col gap-y-2 items-center justify-center h-full w-full">
+        <div className="relative z-10 flex flex-col gap-y-6 items-center justify-center h-full w-full">
           <h1 className="text-white text-4xl iceberg-regular text-center">
            {props.description}
           </h1>

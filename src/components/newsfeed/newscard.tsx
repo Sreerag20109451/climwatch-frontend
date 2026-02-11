@@ -20,8 +20,6 @@ export default function NewsCard(newsreport  : NewsReport ){
         <h1 className="text-lg font-bold text-zinc-500 tracking-tight text-white">{newsreport.title}</h1>
             <Chip color="default"><h4 className="text-sm">{newsreport.source}</h4></Chip>
         <span><h3 className="text-md text-zinc-500 font-semibold tracking-normal">{newsreport.content}</h3>
-        <a href={newsreport.href}>
-            <GoArrowRight/></a>
             </span>
         
     </main>

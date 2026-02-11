@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button } from "@heroui/button";
+import { PiArrowFatLinesUpFill } from "react-icons/pi";
+import { PiArrowFatLineDown   } from "react-icons/pi";
 
 const REGIONS = ["Himalayas", "Alps", "Greenland", "Antarctic"];
 const MASKS = ["no masks" , "mask clouds"];
@@ -12,8 +14,26 @@ export function SentinelForm({ onSubmit }: { onSubmit: (data: any) => void }) {
     threshold : ""
   });
 
+  const [hideController, setHideController] = useState(false)
+
+  const hidecontrollerfunc = () => {
+
+        setHideController(true)
+  }
+
+  const opencontrollerfunc = () => {
+
+    setHideController(false)
+  }
+
+
   return (
-    <form className="flex flex-col gap-5 w-full text-white" onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }}>
+
+    <div className="flex flex-col gap-y-2 items-center">
+        {hideController && formData.threshold  &&
+      <div id='hide-icon'><button onClick={opencontrollerfunc} className="lg:hidden"> <PiArrowFatLineDown /> </button></div>
+      }
+    { !hideController && <form className="flex flex-col gap-5 w-full text-white" onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }}>
       
       {/* Region Selection */}
       <div className="flex flex-col gap-2">
@@ -45,7 +65,7 @@ export function SentinelForm({ onSubmit }: { onSubmit: (data: any) => void }) {
       )}
          {formData.mask && (
         <div className="flex flex-col gap-2 animate-in fade-in">
-          <label className="text-xs font-semibold uppercase text-zinc-500">NDSI Threshold</label>
+          <label className="text-xs font-semibold uppercase text-zinc-500">Apply snow threshold</label>
           <select
             value={formData.threshold}
             onChange={(e) => setFormData({ ...formData, threshold: e.target.value })}
@@ -63,5 +83,10 @@ export function SentinelForm({ onSubmit }: { onSubmit: (data: any) => void }) {
         </Button>
       )}
     </form>
+    }
+    {!hideController && formData.threshold  &&
+      <div id='hide-icon'><button onClick={hidecontrollerfunc} className="lg:hidden"> <PiArrowFatLinesUpFill/> </button></div>
+      }
+    </div>
   );
 }
