@@ -14,7 +14,7 @@ import Logo from "../logo/pnglogo.png";
 
 export const Navbar = () => {
   return (
-    <HeroUINavbar maxWidth="xl" height="4rem" shouldHideOnScroll className="bg-black p-1 opacity-70">
+    <HeroUINavbar maxWidth="xl" height="4rem" shouldHideOnScroll className="bg-black p-1 opacity-70 flex flex-row justify-center">
       {/* Logo / Brand */}
       <NavbarContent className="flex w-full justify-between items-center" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
@@ -49,7 +49,7 @@ export const Navbar = () => {
         <div className="mx-4 mt-2 flex flex-col gap-2 py-4">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link color="primary" href={item.href} size="lg">
+              <Link className="text-white" href={item.href} size="lg">
                 {item.label}
               </Link>
             </NavbarMenuItem>
