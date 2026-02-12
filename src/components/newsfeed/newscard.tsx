@@ -1,6 +1,6 @@
 import {Chip} from "@heroui/chip";
 
-import { GoArrowRight } from "react-icons/go";
+
 
 export interface NewsReport {
 
