@@ -4,7 +4,7 @@ import {Card} from "@heroui/card";
 
 export default function SingleSkelton() {
   return (
-    <Card className="w-[200px] space-y-5 p-4" radius="lg">
+    <Card className="space-y-5 p-4 opacity-5 animate-pulse" radius="lg">
       <Skeleton className="rounded-lg">
         <div className="h-24 rounded-lg bg-default-300" />
       </Skeleton>
