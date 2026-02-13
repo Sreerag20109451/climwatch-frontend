@@ -2,7 +2,10 @@
 import axios from "axios"
 
 
-const snowendpoint = import.meta.env.VITE_API_URL 
+const endpoint = import.meta.env.VITE_API_URL 
+
+
+const snowendpoint = `${endpoint}/snow/global_snow_cover`
 
 export const getGlobalSnowCover = async (
   region: string,
