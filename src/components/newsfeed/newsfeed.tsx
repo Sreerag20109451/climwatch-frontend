@@ -15,7 +15,7 @@ export default function NewsFeed({newsItems}: NewsFeedProps) {
 
 
             <div role="row">
-                <h3 id="newsfeed-title" className="tracking-normal text-2xl text-emerald-300" role="row" aria-label="newsfeed" aria-colindex={1}>News Feed</h3>
+                <h3 id="newsfeed-title" className="tracking-normal text-3xl text-zinc-400" role="row" aria-label="newsfeed" aria-colindex={1}>What's happening</h3>
             </div>
             <div role="row">
                 <Divider className="my-4" />
