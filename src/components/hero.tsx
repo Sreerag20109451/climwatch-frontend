@@ -44,7 +44,7 @@ export default function Hero() {
 
           {/* Tagline and Button Container */}
           <div className="flex flex-col items-center gap-y-8 max-w-2xl">
-            <h2 className="text-zinc-200 text-xl md:text-2xl font-light tracking-widest uppercase italic opacity-90">
+            <h2 className="text-zinc-200 text-xl text-center md:text-2xl font-light tracking-widest uppercase italic opacity-90">
               Monitoring Earth, Interpreting Change
             </h2>
             
