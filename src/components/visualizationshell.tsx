@@ -33,7 +33,7 @@ export function MultiVisualisationShell({ datasets }: MultiVisualisationShellPro
   };
 
   return (
-    <div className="relative w-full h-[calc(100vh-64px)] overflow-hidden bg-slate-950">
+    <div className="relative w-full h-[calc(100vh-64px)] sm:p-2 overflow-hidden bg-slate-950">
       {/* Map Layer */}
       {visualization && (
         <div className="absolute inset-0 z-0 animate-in fade-in duration-1000">

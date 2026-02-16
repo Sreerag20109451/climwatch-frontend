@@ -37,14 +37,14 @@ export default function MapComponent({ overlaytileurl, legend, resolution }: Map
   }
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative pb-2 md:pb-0 lg:pb-0">
       <MapContainer
         center={[51.505, -0.09]}
         zoom={3}
         minZoom={2}
         maxZoom={maxZom}
         scrollWheelZoom={true}
-        className="w-full h-full z-0"
+        className="w-full h-full z-0 md:p-0 lg:p-0 p-2"
       >
         <TileLayer
           attribution='&copy; OpenStreetMap'
